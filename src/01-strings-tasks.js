@@ -98,136 +98,151 @@ function getFirstChar(value) {
 function removeLeadingAndTrailingWhitespaces(value) {
   return value.trimStart().trimEnd();
 
-/**
- * Returns a string that repeated the specified number of times.
- *
- * @param {string} value
- * @param {string} count
- * @return {string}
- *
- * @example
- *   'A', 5  => 'AAAAA'
- *   'cat', 3 => 'catcatcat'
- */
-function repeatString(value, count) {
-  return value.repeat(count);
-}
+  /**
+   * Returns a string that repeated the specified number of times.
+   *
+   * @param {string} value
+   * @param {string} count
+   * @return {string}
+   *
+   * @example
+   *   'A', 5  => 'AAAAA'
+   *   'cat', 3 => 'catcatcat'
+   */
+  function repeatString(value, count) {
+    return value.repeat(count);
+  }
 
-/**
- * Remove the first occurrence of string inside another string
- *
- * @param {string} str
- * @param {string} value
- * @return {string}
- *
- * @example
- *   'To be or not to be', 'not'  => 'To be or  to be'
- *   'I like legends', 'end' => 'I like legs',
- *   'ABABAB','BA' => 'ABAB'
- */
-function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
-}
+  /**
+   * Remove the first occurrence of string inside another string
+   *
+   * @param {string} str
+   * @param {string} value
+   * @return {string}
+   *
+   * @example
+   *   'To be or not to be', 'not'  => 'To be or  to be'
+   *   'I like legends', 'end' => 'I like legs',
+   *   'ABABAB','BA' => 'ABAB'
+   */
+  function removeFirstOccurrences(str, value) {
+    return str.replace(value, '');
+  }
 
-/**
- * Remove the first and last angle brackets from tag string
- *
- * @param {string} str
- * @return {string}
- *
- * @example
- *   '<div>' => 'div'
- *   '<span>' => 'span'
- *   '<a>' => 'a'
- */
-function unbracketTag(str) {
-  return str.slice(1, -1);
-}
+  /**
+   * Remove the first and last angle brackets from tag string
+   *
+   * @param {string} str
+   * @return {string}
+   *
+   * @example
+   *   '<div>' => 'div'
+   *   '<span>' => 'span'
+   *   '<a>' => 'a'
+   */
+  function unbracketTag(str) {
+    return str.slice(1, -1);
+  }
 
 
-/**
- * Converts all characters of the specified string into the upper case
- *
- * @param {string} str
- * @return {string}
- *
- * @example
- *   'Thunderstruck' => 'THUNDERSTRUCK'
- *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
- */
-function convertToUpperCase(str) {
-  return str.toUpperCase();
-}
+  /**
+   * Converts all characters of the specified string into the upper case
+   *
+   * @param {string} str
+   * @return {string}
+   *
+   * @example
+   *   'Thunderstruck' => 'THUNDERSTRUCK'
+   *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+   */
+  function convertToUpperCase(str) {
+    return str.toUpperCase();
+  }
 
-/**
- * Extracts e-mails from single string with e-mails list delimeted by semicolons
- *
- * @param {string} str
- * @return {array}
- *
- * @example
- *   'angus.young@gmail.com;brian.johnson@hotmail.com;bon.scott@yahoo.com'
- *   => [
- *      'angus.young@gmail.com',
- *      'brian.johnson@hotmail.com',
- *      'bon.scott@yahoo.com'
- *   ],
- *   'info@gmail.com' => ['info@gmail.com']
- */
-function extractEmails(str) {
-  str.split(';')
-}
+  /**
+   * Extracts e-mails from single string with e-mails list delimeted by semicolons
+   *
+   * @param {string} str
+   * @return {array}
+   *
+   * @example
+   *   'angus.young@gmail.com;brian.johnson@hotmail.com;bon.scott@yahoo.com'
+   *   => [
+   *      'angus.young@gmail.com',
+   *      'brian.johnson@hotmail.com',
+   *      'bon.scott@yahoo.com'
+   *   ],
+   *   'info@gmail.com' => ['info@gmail.com']
+   */
+  function extractEmails(str) {
+    str.split(';')
+  }
 
-/**
- * Returns the string representation of rectangle with specified width and height
- * using pseudograhic chars
- *
- * @param {number} width
- * @param {number} height
- * @return {string}
- *
- * @example
- *
- *            '┌────┐\n'+
- *  (6,4) =>  '│    │\n'+
- *            '│    │\n'+
- *            '└────┘\n'
- *
- *  (2,2) =>  '┌┐\n'+
- *            '└┘\n'
- *
- *             '┌──────────┐\n'+
- *  (12,3) =>  '│          │\n'+
- *             '└──────────┘\n'
- *
- */
- function getRectangleString(width, height) {
-  return (
-    '┌' + '─'.repeat(width <= 2 ? 0 : width - 2) + '┐\n' +
-   ('│' + ' '.repeat(width <= 2 ? 0 : width - 2) + '│\n').repeat(height <= 2 ? 0 : height - 2) +
-    '└' + '─'.repeat(width <= 2 ? 0 : width - 2) + '┘\n'
+  /**
+   * Returns the string representation of rectangle with specified width and height
+   * using pseudograhic chars
+   *
+   * @param {number} width
+   * @param {number} height
+   * @return {string}
+   *
+   * @example
+   *
+   *            '┌────┐\n'+
+   *  (6,4) =>  '│    │\n'+
+   *            '│    │\n'+
+   *            '└────┘\n'
+   *
+   *  (2,2) =>  '┌┐\n'+
+   *            '└┘\n'
+   *
+   *             '┌──────────┐\n'+
+   *  (12,3) =>  '│          │\n'+
+   *             '└──────────┘\n'
+   *
+   */
+  function getRectangleString(width, height) {
+    return (
+      '┌' + '─'.repeat(width <= 2 ? 0 : width - 2) + '┐\n' +
+      ('│' + ' '.repeat(width <= 2 ? 0 : width - 2) + '│\n').repeat(height <= 2 ? 0 : height - 2) +
+      '└' + '─'.repeat(width <= 2 ? 0 : width - 2) + '┘\n'
     );
 
-}
+  }
 
-/**
- * Encode specified string with ROT13 cipher
- * See details:  https://en.wikipedia.org/wiki/ROT13
- *
- * @param {string} str
- * @return {string}
- *
- * @example
- *
- *   'hello' => 'uryyb'
- *   'Why did the chicken cross the road?' => 'Jul qvq gur puvpxra pebff gur ebnq?'
- *   'Gb trg gb gur bgure fvqr!' => 'To get to the other side!'
- *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
- *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
- *
- */
-function encodeToRot13(str) {
-  throw new Error('Not implemented');
+  /**
+   * Encode specified string with ROT13 cipher
+   * See details:  https://en.wikipedia.org/wiki/ROT13
+   *
+   * @param {string} str
+   * @return {string}
+   *
+   * @example
+   *
+   *   'hello' => 'uryyb'
+   *   'Why did the chicken cross the road?' => 'Jul qvq gur puvpxra pebff gur ebnq?'
+   *   'Gb trg gb gur bgure fvqr!' => 'To get to the other side!'
+   *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+   *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+   *
+   */
+   function encodeToRot13(str) { // не роботоит
+    return str.split('').map(e => {
+      if (e.charCodeAt() === 32) {
+        return ' ';
+      } else if ((e.charCodeAt() <= 77) && (e.charCodeAt() > 65)) {
+        return String.fromCharCode(e.charCodeAt() + 13);
+      } else if (e.charCodeAt() <= 90) {
+        return String.fromCharCode(e.charCodeAt() - 13);
+      } else if (e.charCodeAt() <= 109) {
+        return String.fromCharCode(e.charCodeAt() + 13);
+      } else if (e.charCodeAt() <= 122) {
+        return String.fromCharCode(e.charCodeAt() - 13);
+      } else {
+        return String.fromCharCode(e.charCodeAt());
+      }
+    }
+    ).join('');
 }
 
 /**
@@ -243,9 +258,40 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+ function isString(value) {
+  // return (typeof value === 'string') || (typeof value.valueOf() === 'string');
+ // let returnValue = Object.prototype.toString.call(value).valueOf().substring()
+//  let returnValue = Object.prototype.toString.call(value).valueOf().substring(3, 3)
+// split(' ')[1]
+//  console.log(returnValue);
+ // let type = returnValue.substring(
+  //  returnValue.indexOf(" ") + 1, 
+   // returnValue.indexOf("]"));
+  //  return type;
 }
+// let x1;
+// let x2 = null;
+// let x3 = [];
+// let x4 = {};
+// let x5 = 'test';
+// let x6 = new String('test');
+// console.log(isString(x1));
+// console.log(isString(x2));
+// console.log(isString(x3));
+// console.log(isString(x4));
+// console.log(isString(x5));
+// console.log(isString(x6));
+
+
+// function typeCheck(value) {
+//  const return_value = Object.prototype.toString.call(value);
+  // we can also use regex to do this...
+//  const type = return_value.substring(
+//           return_value.indexOf(" ") + 1, 
+//           return_value.indexOf("]"));
+//
+//  return type.toLowerCase();
+//}
 
 
 /**
