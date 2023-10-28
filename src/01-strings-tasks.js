@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}`;
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  return value.split(' ')[1];
+  return value.split(', ')[1].slice(0, -1);
 }
 
 
@@ -97,8 +97,8 @@ function getFirstChar(value) {
  */
 function removeLeadingAndTrailingWhitespaces(value) {
   return value.trimStart().trimEnd();
-
-  /**
+}
+/**
    * Returns a string that repeated the specified number of times.
    *
    * @param {string} value
@@ -109,11 +109,11 @@ function removeLeadingAndTrailingWhitespaces(value) {
    *   'A', 5  => 'AAAAA'
    *   'cat', 3 => 'catcatcat'
    */
-  function repeatString(value, count) {
-    return value.repeat(count);
-  }
+function repeatString(value, count) {
+  return value.repeat(count);
+}
 
-  /**
+/**
    * Remove the first occurrence of string inside another string
    *
    * @param {string} str
@@ -125,11 +125,11 @@ function removeLeadingAndTrailingWhitespaces(value) {
    *   'I like legends', 'end' => 'I like legs',
    *   'ABABAB','BA' => 'ABAB'
    */
-  function removeFirstOccurrences(str, value) {
-    return str.replace(value, '');
-  }
+function removeFirstOccurrences(str, value) {
+  return str.replace(value, '');
+}
 
-  /**
+/**
    * Remove the first and last angle brackets from tag string
    *
    * @param {string} str
@@ -140,12 +140,12 @@ function removeLeadingAndTrailingWhitespaces(value) {
    *   '<span>' => 'span'
    *   '<a>' => 'a'
    */
-  function unbracketTag(str) {
-    return str.slice(1, -1);
-  }
+function unbracketTag(str) {
+  return str.slice(1, -1);
+}
 
 
-  /**
+/**
    * Converts all characters of the specified string into the upper case
    *
    * @param {string} str
@@ -155,11 +155,11 @@ function removeLeadingAndTrailingWhitespaces(value) {
    *   'Thunderstruck' => 'THUNDERSTRUCK'
    *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
    */
-  function convertToUpperCase(str) {
-    return str.toUpperCase();
-  }
+function convertToUpperCase(str) {
+  return str.toUpperCase();
+}
 
-  /**
+/**
    * Extracts e-mails from single string with e-mails list delimeted by semicolons
    *
    * @param {string} str
@@ -174,11 +174,11 @@ function removeLeadingAndTrailingWhitespaces(value) {
    *   ],
    *   'info@gmail.com' => ['info@gmail.com']
    */
-  function extractEmails(str) {
-    str.split(';')
-  }
+function extractEmails(str) {
+  return str.split(';');
+}
 
-  /**
+/**
    * Returns the string representation of rectangle with specified width and height
    * using pseudograhic chars
    *
@@ -201,16 +201,15 @@ function removeLeadingAndTrailingWhitespaces(value) {
    *             '└──────────┘\n'
    *
    */
-  function getRectangleString(width, height) {
-    return (
-      '┌' + '─'.repeat(width <= 2 ? 0 : width - 2) + '┐\n' +
-      ('│' + ' '.repeat(width <= 2 ? 0 : width - 2) + '│\n').repeat(height <= 2 ? 0 : height - 2) +
-      '└' + '─'.repeat(width <= 2 ? 0 : width - 2) + '┘\n'
-    );
+function getRectangleString(width, height) {
+  return (
+    `┌${'─'.repeat(width <= 2 ? 0 : width - 2)}┐\n${
+      (`│${' '.repeat(width <= 2 ? 0 : width - 2)}│\n`).repeat(height <= 2 ? 0 : height - 2)
+    }└${'─'.repeat(width <= 2 ? 0 : width - 2)}┘\n`
+  );
+}
 
-  }
-
-  /**
+/**
    * Encode specified string with ROT13 cipher
    * See details:  https://en.wikipedia.org/wiki/ROT13
    *
@@ -226,102 +225,71 @@ function removeLeadingAndTrailingWhitespaces(value) {
    *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
    *
    */
-   function encodeToRot13(str) { // не роботоит
-    return str.split('').map(e => {
-      if (e.charCodeAt() === 32) {
-        return ' ';
-      } else if ((e.charCodeAt() <= 77) && (e.charCodeAt() > 65)) {
-        return String.fromCharCode(e.charCodeAt() + 13);
-      } else if (e.charCodeAt() <= 90) {
-        return String.fromCharCode(e.charCodeAt() - 13);
-      } else if (e.charCodeAt() <= 109) {
-        return String.fromCharCode(e.charCodeAt() + 13);
-      } else if (e.charCodeAt() <= 122) {
-        return String.fromCharCode(e.charCodeAt() - 13);
-      } else {
-        return String.fromCharCode(e.charCodeAt());
-      }
+function encodeToRot13(str) {
+  return str.split('').map((e) => {
+    if (e.charCodeAt() === 32) {
+      return ' ';
+    } if ((e.charCodeAt() <= 77) && (e.charCodeAt() >= 65)) {
+      return String.fromCharCode(e.charCodeAt() + 13);
+    } if ((e.charCodeAt() <= 90) && e.charCodeAt() >= 65) {
+      return String.fromCharCode(e.charCodeAt() - 13);
+    } if ((e.charCodeAt() <= 109) && e.charCodeAt() >= 65) {
+      return String.fromCharCode(e.charCodeAt() + 13);
+    } if ((e.charCodeAt() <= 122) && e.charCodeAt() >= 65) {
+      return String.fromCharCode(e.charCodeAt() - 13);
     }
-    ).join('');
+    return String.fromCharCode(e.charCodeAt());
+  }).join('');
 }
 
 /**
- * Returns true if the value is string; otherwise false.
- * @param {string} value
- * @return {boolean}
- *
- * @example
- *   isString() => false
- *   isString(null) => false
- *   isString([]) => false
- *   isString({}) => false
- *   isString('test') => true
- *   isString(new String('test')) => true
- */
- function isString(value) {
-  // return (typeof value === 'string') || (typeof value.valueOf() === 'string');
- // let returnValue = Object.prototype.toString.call(value).valueOf().substring()
-//  let returnValue = Object.prototype.toString.call(value).valueOf().substring(3, 3)
-// split(' ')[1]
-//  console.log(returnValue);
- // let type = returnValue.substring(
-  //  returnValue.indexOf(" ") + 1, 
-   // returnValue.indexOf("]"));
-  //  return type;
+   * Returns true if the value is string; otherwise false.
+   * @param {string} value
+   * @return {boolean}
+   *
+   * @example
+   *   isString() => false
+   *   isString(null) => false
+   *   isString([]) => false
+   *   isString({}) => false
+   *   isString('test') => true
+   *   isString(new String('test')) => true
+   */
+function isString(value) {
+  return Object.prototype.toString.call(value).slice(0, -1).split(' ')[1] === 'String';
 }
-// let x1;
-// let x2 = null;
-// let x3 = [];
-// let x4 = {};
-// let x5 = 'test';
-// let x6 = new String('test');
-// console.log(isString(x1));
-// console.log(isString(x2));
-// console.log(isString(x3));
-// console.log(isString(x4));
-// console.log(isString(x5));
-// console.log(isString(x6));
-
-
-// function typeCheck(value) {
-//  const return_value = Object.prototype.toString.call(value);
-  // we can also use regex to do this...
-//  const type = return_value.substring(
-//           return_value.indexOf(" ") + 1, 
-//           return_value.indexOf("]"));
-//
-//  return type.toLowerCase();
-//}
-
 
 /**
- * Returns playid card id.
- *
- * Playing cards inittial deck inclides the cards in the following order:
- *
- *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
- *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
- *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
- *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
- *
- * (see https://en.wikipedia.org/wiki/Standard_52-card_deck)
- * Function returns the zero-based index of specified card in the initial deck above.
- *
- * @param {string} value
- * @return {number}
- *
- * @example
- *   'A♣' => 0
- *   '2♣' => 1
- *   '3♣' => 2
- *     ...
- *   'Q♠' => 50
- *   'K♠' => 51
- */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+   * Returns playid card id.
+   *
+   * Playing cards inittial deck inclides the cards in the following order:
+   *
+   *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
+   *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
+   *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
+   *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
+   *
+   * (see https://en.wikipedia.org/wiki/Standard_52-card_deck)
+   * Function returns the zero-based index of specified card in the initial deck above.
+   *
+   * @param {string} value
+   * @return {number}
+   *
+   * @example
+   *   'A♣' => 0
+   *   '2♣' => 1
+   *   '3♣' => 2
+   *     ...
+   *   'Q♠' => 50
+   *   'K♠' => 51
+   */
+function getCardId(value) {
+  const cardValue = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return cardValue.findIndex((e) => e === value);
 }
-
 
 module.exports = {
   concatenateStrings,
